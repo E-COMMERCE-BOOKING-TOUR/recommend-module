@@ -12,7 +12,7 @@ async function bootstrap() {
         transport: Transport.TCP,
         options: {
             host: '0.0.0.0',
-            port: 8878,
+            port: Number(process.env.RECOMMEND_TCP_PORT) || 8866,
         },
     });
 
@@ -25,6 +25,6 @@ async function bootstrap() {
     // HTTP/WebSocket server listens on the main PORT
     await app.listen(process.env.PORT);
     console.log(`Recommend service HTTP/WS is listening on port ${process.env.PORT}`);
-    console.log(`Recommend service TCP is listening on port 8878`);
+    console.log(`Recommend service TCP is listening on port ${process.env.RECOMMEND_TCP_PORT || 8866}`);
 }
 bootstrap();
